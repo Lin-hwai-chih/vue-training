@@ -1,10 +1,17 @@
 <script setup>
+import { ref } from "vue";
+// let title = "網站標題";
+// let title = ref("網站標題");
+let state = ref({
+  title: "網站標題",
+  className: "title",
+});
 let handle = function () {
-  console.log("Click");
-};
-
-let mousemoveHandler = function () {
-  console.log("Mouse Over");
+  // console.log("點擊");
+  // title = "新的網站標題";
+  // title.value = "新的網站標題";
+  state.value.title = "新的網站標題";
+  state.value.className = "title highlight";
 };
 </script>
 
@@ -12,16 +19,20 @@ let mousemoveHandler = function () {
   <nav>基本的導覽列</nav>
 
   <main>
-    <!-- <button v-on:click="handle">按鈕</button> -->
-    <!-- <button @click="handle" @mouseover="mousemoveHandler">按鈕</button> -->
-    <button @click.once="handle" @mouseover="mousemoveHandler">按鈕</button>
-    <!-- <a @click.prevent href="http://training.pada-x.com/">課程網站</a> -->
-    <a @click.prevent="handle" href="http://training.pada-x.com/">課程網站</a>
+    <!-- <div>{{ title }}</div> -->
+    <div :class="state.className">{{ state.title }}</div>
+    <button @click="handle">按鈕</button>
   </main>
 </template>
  
 <style scoped>
 main {
   background-color: #dddddd;
+}
+.title {
+  font-weight: bold;
+}
+.highlight {
+  color: red;
 }
 </style>
